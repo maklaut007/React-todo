@@ -21,7 +21,7 @@ const initialState = {
       id: '18', text: 'one', isCompleted: false, dateId: 'date1',
     },
     {
-      id: '2', text: 'two', isCompleted: false, dateId: 'date1',
+      id: '2', text: 'two', isCompleted: true, dateId: 'date1',
     },
     {
       id: '3', text: 'three', isCompleted: false, dateId: 'date2',
@@ -85,7 +85,6 @@ export default function toDoReducer(state = initialState, action) {
     }
     case 'CHANGE_TASK_COMPLETION_STATUS': {
       const { taskId } = action.payload;
-      console.log(state);
       const taskIndex = state.tasks.findIndex((elem) => elem.id === taskId);
       return {
         ...state,

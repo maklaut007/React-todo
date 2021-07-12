@@ -1,27 +1,76 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { deleteTaskfromReducer, changeTaskComplitionStatus } from '../../actions';
-import Checkbox from '../StyledComponents/Checkbox';
+
+const CheckboxContainer = styled.div`
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  
+`;
+// const Checkbox = styled.input`
+// position: absolute;
+//   opacity: 0;
+//   cursor: pointer;
+//   height: 0;
+//   width: 0;
+// `;
+const Checkmark = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: darkCyan;
+  border-radius: 2px;
+  background-color: ${(props) => (props.isChecked ? 'darkCyan' : '#eee')};
+  &:hover{
+    background-color: ${(props) => (props.isChecked ? 'darkCyan' : '#ccc')};
+  }
+  &:after {
+    content: "";
+    display: ${(props) => (props.isChecked ? 'block' : 'none')};
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+`;
 
 function Task({
-  deleteTask, taskId, taskName, changeComplitionStatus,
+  deleteTask, taskId, taskName, changeComplitionStatus, isCompleted,
 }) {
-  const [isComplted, setIsComplted] = useState(false);
+  const [isComplted, setIsCompelted] = useState(isCompleted);
   const handleDeleteTask = () => {
     deleteTask({ taskId });
   };
   const handleCompleteTask = () => {
     changeComplitionStatus(taskId);
-    setIsComplted(!isComplted);
+    setIsCompelted(!isComplted);
   };
+  useEffect(() => {
+  }, [isCompleted]);
+
   return (
     <div className="task">
-      <Checkbox />
-      <input className="complete-task-button" onClick={handleCompleteTask} type="button" value="Compl?" />
-      <p>{taskName}</p>
+      <CheckboxContainer>
+        <Checkmark
+          onClick={handleCompleteTask}
+          isChecked={isCompleted}
+          defaultChecked={isCompleted}
+        />
+      </CheckboxContainer>
+      <div htmlFor="task-checkbox">{taskName}</div>
       <input className="delete-task" onClick={handleDeleteTask} type="button" value="Delete" />
-
     </div>
   );
 }
@@ -31,6 +80,7 @@ Task.propTypes = {
   taskId: PropTypes.string.isRequired,
   taskName: PropTypes.string.isRequired,
   changeComplitionStatus: PropTypes.func.isRequired,
+  isCompleted: PropTypes.bool.isRequired,
 };
 export default connect(
   (state) => ({

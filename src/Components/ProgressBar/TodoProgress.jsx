@@ -1,5 +1,17 @@
 import { number } from 'prop-types';
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const ProgressBar = styled.div`
+position: relative;
+`;
+const PersentValue = styled.p`
+  font-size: 1.8em;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translateX(-45%) translateY(-50%);
+`;
 
 function TodoProgress({ progressPercent }) {
   const [percent, setPercent] = useState(0);
@@ -7,30 +19,28 @@ function TodoProgress({ progressPercent }) {
   React.useEffect(() => {
     setPercent(progressPercent);
   }, [progressPercent]);
-  const radius = 30;
-  const stroke = 4;
+  const radius = 90;
+  const stroke = 14;
   const normalizedRadius = radius - stroke * 2;
   const circumference = normalizedRadius * 2 * Math.PI;
-  const strokeDashoffset = circumference - (percent / 100) * circumference;
+  const strokeDashoffset = circumference - ((percent === 0 ? 0.5 : percent) / 100) * circumference;
   return (
-    <div className="progress-bar">
+    <ProgressBar className="progress-bar">
       <svg width={radius * 2} height={radius * 2} className="progress-bar__svg">
         <circle
           className="progress-bar__circle"
           cx={radius}
           cy={radius}
           r={normalizedRadius}
-          stroke="white"
+          stroke="darkCyan"
           fill="transparent"
           strokeWidth={stroke}
           strokeDasharray={`${circumference} ${circumference}`}
           strokeDashoffset={strokeDashoffset}
         />
       </svg>
-      <button type="button" className="progress-bar__percent">
-        <span className="percent__int">{percent}</span>
-      </button>
-    </div>
+      <PersentValue className="percent__int">{`${Math.round(percent * 100) / 100}%` }</PersentValue>
+    </ProgressBar>
   );
 }
 

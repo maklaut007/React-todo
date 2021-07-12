@@ -40,10 +40,8 @@ function CalendarMenu({ myStore }) {
 
   const scrollClick = (direction) => {
     if (direction === 'left' && menuScrollDistance < -180) {
-      console.log(1, menuScrollDistance);
       setMenuScrollDistance(menuScrollDistance + 180);
     } else if (direction === 'left' && menuScrollDistance > -180) {
-      console.log(2, menuScrollDistance);
       setMenuScrollDistance(0);
     } else if (direction === 'right' && -(menuScrollDistance) < (menuTotalWidth - 7 * 60 - 3 * 60)) {
       setMenuScrollDistance(menuScrollDistance - 180);
