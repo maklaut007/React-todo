@@ -11,13 +11,11 @@ function Todo({ myStore }) {
     .filter((task) => task.dateId === myStore.todos.dateFocus);
   const listTasks = todoArr.map((item) => <Task key={item.id} isCompleted={item.isCompleted} taskId={item.id} className="task" taskName={item.text} />);
 
-  const totalTasks = todoArr.length;
+  const totalTasks = todoArr.length || 1;
   const completedTasks = todoArr.filter((elem) => elem.isCompleted).length;
-
   return (
     <div className="todo">
       <CalendarMenu />
-
       <div className="task-list">{listTasks}</div>
       <AddTask />
       <TodoProgress progressPercent={(completedTasks / totalTasks) * 100} />

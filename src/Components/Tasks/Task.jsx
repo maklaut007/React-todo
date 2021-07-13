@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { deleteTaskfromReducer, changeTaskComplitionStatus } from '../../actions';
+import DeleteTask from './DeleteTask';
 
 const CheckboxContainer = styled.div`
   position: relative;
@@ -11,14 +13,7 @@ const CheckboxContainer = styled.div`
   user-select: none;
   
 `;
-// const Checkbox = styled.input`
-// position: absolute;
-//   opacity: 0;
-//   cursor: pointer;
-//   height: 0;
-//   width: 0;
-// `;
-const Checkmark = styled.span`
+const Checkbox = styled.span`
   position: absolute;
   top: 0;
   left: 0;
@@ -63,14 +58,14 @@ function Task({
   return (
     <div className="task">
       <CheckboxContainer>
-        <Checkmark
+        <Checkbox
           onClick={handleCompleteTask}
           isChecked={isCompleted}
           defaultChecked={isCompleted}
         />
       </CheckboxContainer>
       <div htmlFor="task-checkbox">{taskName}</div>
-      <input className="delete-task" onClick={handleDeleteTask} type="button" value="Delete" />
+      <DeleteTask handleDeleteTask={handleDeleteTask} />
     </div>
   );
 }
