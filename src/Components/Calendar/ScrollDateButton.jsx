@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const ArrowButton = styled.button`
-  width: 5%;
+  width: 20px;
   cursor: pointer;
   height: 70px;
   color: white;

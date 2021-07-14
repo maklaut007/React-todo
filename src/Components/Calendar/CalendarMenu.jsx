@@ -14,7 +14,7 @@ const Calendar = styled.nav`
   height: 100px;
 `;
 const DatesList = styled.div`
-  width: 90%;
+  width: calc(100% - 40px);
   display: flex;
   position: relative;
   overflow: hidden;
@@ -44,7 +44,7 @@ function CalendarMenu({ myStore }) {
   const scrollClick = (direction) => {
     if (direction === 'left' && menuScrollDistance < -180) {
       setMenuScrollDistance(menuScrollDistance + 180);
-    } else if (direction === 'left' && menuScrollDistance > -180) {
+    } else if (direction === 'left') {
       setMenuScrollDistance(0);
     } else if (direction === 'right' && -(menuScrollDistance) < (menuTotalWidth - 7 * 60 - 3 * 60)) {
       setMenuScrollDistance(menuScrollDistance - 180);

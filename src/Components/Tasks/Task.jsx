@@ -8,16 +8,22 @@ import { deleteTaskfromReducer, changeTaskComplitionStatus } from '../../actions
 import DeleteTask from './DeleteTask';
 
 const TaskWrap = styled.div`
-  margin: 15px 50px;
+  margin: 15px auto;
   background-color: var(--yellow);
   padding: 7px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  width: 80%;
+  max-width: 420px;
+  overflow: hidden;
 `;
 const TaskName = styled.p`
+  
   text-decoration: ${(props) => (props.isCompleted ? 'line-through' : 'none')};
   font-size: 1.2em;
+  margin-left: 5px;
+  max-width: 80%;
 `;
 
 const CheckboxContainer = styled.div`
@@ -69,7 +75,7 @@ function Task({
   }, [isCompleted]);
 
   return (
-    <TaskWrap className="task">
+    <TaskWrap>
       <CheckboxContainer>
         <Checkbox
           onClick={handleCompleteTask}
@@ -77,7 +83,11 @@ function Task({
           defaultChecked={isCompleted}
         />
       </CheckboxContainer>
-      <TaskName isCompleted={isCompleted}>{taskName}</TaskName>
+      <TaskName isCompleted={isCompleted}>
+        {
+          taskName
+        }
+      </TaskName>
       <DeleteTask handleDeleteTask={handleDeleteTask} />
     </TaskWrap>
   );

@@ -18,46 +18,10 @@ const initialState = {
       id: '1', text: 'one', isCompleted: false, dateId: 'date1',
     },
     {
-      id: '18', text: 'one', isCompleted: false, dateId: 'date1',
+      id: '18', text: 'two', isCompleted: false, dateId: 'date1',
     },
     {
-      id: '2', text: 'two', isCompleted: true, dateId: 'date1',
-    },
-    {
-      id: '3', text: 'three', isCompleted: false, dateId: 'date2',
-    },
-    {
-      id: '4', text: 'four', isCompleted: false, dateId: 'date2',
-    },
-    {
-      id: '5', text: 'one', isCompleted: false, dateId: 'date3',
-    },
-    {
-      id: '6', text: 'two', isCompleted: false, dateId: 'date4',
-    },
-    {
-      id: '7', text: 'three', isCompleted: false, dateId: 'date5',
-    },
-    {
-      id: '8', text: 'four', isCompleted: false, dateId: 'date5',
-    },
-    {
-      id: '9', text: 'three', isCompleted: false, dateId: 'date6',
-    },
-    {
-      id: '10', text: 'four', isCompleted: false, dateId: 'date6',
-    },
-    {
-      id: '11', text: 'three', isCompleted: false, dateId: 'date6',
-    },
-    {
-      id: '12', text: 'four', isCompleted: false, dateId: 'date6',
-    },
-    {
-      id: '13', text: 'three', isCompleted: false, dateId: 'date7',
-    },
-    {
-      id: '14', text: 'four', isCompleted: false, dateId: 'date7',
+      id: '2', text: 'three', isCompleted: true, dateId: 'date1',
     },
   ],
 };
@@ -85,6 +49,7 @@ export default function toDoReducer(state = initialState, action) {
     }
     case 'CHANGE_TASK_COMPLETION_STATUS': {
       const { taskId } = action.payload;
+
       const taskIndex = state.tasks.findIndex((elem) => elem.id === taskId);
       return {
         ...state,
