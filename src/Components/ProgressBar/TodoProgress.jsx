@@ -5,6 +5,11 @@ import styled from 'styled-components';
 const ProgressBar = styled.div`
 position: relative;
 `;
+const ProgressCircle = styled.circle`
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+`;
 const PersentValue = styled.p`
   font-size: 1.8em;
   position: absolute;
@@ -25,10 +30,9 @@ function TodoProgress({ progressPercent }) {
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = circumference - ((percent === 0 ? 0.5 : percent) / 100) * circumference;
   return (
-    <ProgressBar className="progress-bar">
-      <svg width={radius * 2} height={radius * 2} className="progress-bar__svg">
-        <circle
-          className="progress-bar__circle"
+    <ProgressBar>
+      <svg width={radius * 2} height={radius * 2}>
+        <ProgressCircle
           cx={radius}
           cy={radius}
           r={normalizedRadius}

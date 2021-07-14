@@ -7,6 +7,19 @@ import styled from 'styled-components';
 import { deleteTaskfromReducer, changeTaskComplitionStatus } from '../../actions';
 import DeleteTask from './DeleteTask';
 
+const TaskWrap = styled.div`
+  margin: 15px 50px;
+  background-color: var(--yellow);
+  padding: 7px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+`;
+const TaskName = styled.p`
+  text-decoration: ${(props) => (props.isCompleted ? 'line-through' : 'none')};
+  font-size: 1.2em;
+`;
+
 const CheckboxContainer = styled.div`
   position: relative;
   cursor: pointer;
@@ -56,7 +69,7 @@ function Task({
   }, [isCompleted]);
 
   return (
-    <div className="task">
+    <TaskWrap className="task">
       <CheckboxContainer>
         <Checkbox
           onClick={handleCompleteTask}
@@ -64,9 +77,9 @@ function Task({
           defaultChecked={isCompleted}
         />
       </CheckboxContainer>
-      <div htmlFor="task-checkbox">{taskName}</div>
+      <TaskName isCompleted={isCompleted}>{taskName}</TaskName>
       <DeleteTask handleDeleteTask={handleDeleteTask} />
-    </div>
+    </TaskWrap>
   );
 }
 

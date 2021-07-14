@@ -7,6 +7,9 @@ import myStoreProps from '../../global/types';
 import ScrollDateButton from './ScrollDateButton';
 
 const Calendar = styled.nav`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
   width: 100%;
   height: 100px;
 `;
@@ -51,7 +54,7 @@ function CalendarMenu({ myStore }) {
   };
 
   return (
-    <Calendar className="calendar">
+    <Calendar>
       <ScrollDateButton direction="left" scrollClick={scrollClick} />
       <DatesList>
         <DatesListScroll ref={ref} menuScrollDistance={menuScrollDistance}>

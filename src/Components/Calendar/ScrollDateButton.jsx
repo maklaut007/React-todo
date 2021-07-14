@@ -6,17 +6,20 @@ const ArrowButton = styled.button`
   width: 5%;
   cursor: pointer;
   height: 70px;
+  color: white;
+  font-size: 2.8em;
+  background-color: var(--darkCyan);
 `;
 
 function ScrollDateButton({ direction, scrollClick }) {
   const displayDate = () => {
     if (direction === 'left') {
       return (
-        <ArrowButton onClick={() => scrollClick(direction)} className="date-scroll-button  date-scroll-button_left" type="button">&#x2039;</ArrowButton>
+        <ArrowButton onClick={() => scrollClick(direction)} type="button">&#x2039;</ArrowButton>
       );
     } if (direction === 'right') {
       return (
-        <ArrowButton onClick={() => scrollClick(direction)} className="date-scroll-button date-scroll-button_right" type="button">&#x203A;</ArrowButton>
+        <ArrowButton onClick={() => scrollClick(direction)} type="button">&#x203A;</ArrowButton>
       );
     } return null;
   };
