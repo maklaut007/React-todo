@@ -10,7 +10,16 @@
   padding: 0;
   margin: 0;
   border: none;
+}
+html, body  {
+    height: 100%;
+}
+#root {
+  background-color: #ccc;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 
 }
-
-

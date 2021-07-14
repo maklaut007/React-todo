@@ -9,11 +9,12 @@ import myStoreProps from '../global/types';
 
 const TodoWrap = styled.div`
   background-color: var(--lightGrey);
-  width: 100%;
-  max-width: 460px;
-  height: 800px;
+  min-height: 800px;
   display: flex;
   flex-flow: column wrap;
+  width: 100%;
+  max-width: 460px;
+  border: 1px solid #026670;
 `;
 const TaskList = styled.div`
   display: flex;

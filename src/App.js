@@ -4,6 +4,7 @@ import './App.css';
 import Todo from './Components/Todo';
 
 const AppWrap = styled.div`
+width: 100%;
   display: flex;
   justify-content: center;
   text-align: center;
